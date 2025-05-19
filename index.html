@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhadra Reddy Quality Chicken Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bhadra Reddy Quality Chicken Center</h1>
+            <img src="images/logo.jpg" alt="Business Logo" class="logo">
+           
+        </header>
+
+        <div id="login-form" class="form">
+            <h2>Login</h2>
+            <input type="text" id="loginId" placeholder="Login ID" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button onclick="login()">Login</button>
+            <p id="error-message" class="error-message"></p>
+        </div>
+
+        <div id="home" class="hidden">
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showTab('dashboard')">Dashboard</a></li>
+                    <li><a href="#" onclick="showTab('attendance')">Workers Attendance</a></li>
+                    <li><a href="#" onclick="showTab('add-heans')">Add Heans for Chicken</a></li>
+                    <li><a href="#" onclick="showTab('add-rate')">Add Rate Sick/Skinless</a></li>
+                    <li><a href="#" onclick="showTab('orders')">Orders</a></li>
+                    <li><a href="#" onclick="showTab('reports')">Reports</a></li>
+                </ul>
+            </nav>
+
+            <button onclick="logout()">Logout</button>
+
+            <div id="dashboard" class="tab-content">
+                <h2>Dashboard</h2>
+                <div id="dashboard-info">
+                    <p><strong>Available Workers:</strong> <span id="available-workers">0</span></p>
+                    <p><strong>Total Heans Added:</strong> <span id="total-heans">0</span></p>
+                    <p><strong>Rates for Sick/Skinless:</strong> <span id="rates-info"></span></p>
+                    <h3>Order Tracking</h3>
+                    <table id="order-tracking-table">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Quantity</th>
+                                <th>Assigned Worker</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-tracking-list">
+                            <!-- Orders will be dynamically populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="attendance" class="tab-content hidden">
+                <h2>Workers Attendance</h2>
+                <table id="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact Number</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                            <th>Amount Taken Today</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="workers-list">
+                        <!-- Workers will be dynamically populated here -->
+                    </tbody>
+                </table>
+                <h3>Add Worker</h3>
+                <input type="text" id="worker-name" placeholder="Worker Name" required>
+                <input type="text" id="worker-contact" placeholder="Contact Number" required>
+                <button onclick="addWorker()">Add Worker</button>
+            </div>
+
+            <div id="add-heans" class="tab-content hidden">
+                <h2>Add Heans for Chicken</h2>
+                <input type="number" id="heans-quantity" placeholder="Quantity" required>
+                <button onclick="addHeans()">Save</button>
+                <div id="heans-log"></div>
+            </div>
+
+            <div id="add-rate" class="tab-content hidden">
+                <h2>Add Rate Sick/Skinless Chicken</h2>
+                <input type="number" id="rate-skin" placeholder="Rate for Skin" required>
+                <input type="number" id="rate-skinless" placeholder="Rate for Skinless" required>
+                <button onclick="addRate()">Save</button>
+            </div>
+
+            <div id="orders" class="tab-content hidden">
+                <h2>Orders</h2>
+                <form id="order-form" onsubmit="submitOrder(event)">
+                    <input type="text" placeholder="Customer Name" required>
+                    <input type="text" placeholder="Contact Number" required>
+                    <input type="text" placeholder="Address" required>
+                    <input type="number" placeholder="Quantity" required>
+                    <select id="assigned-worker">
+                        <!-- Workers will be dynamically populated here -->
+                    </select>
+                    <button type="submit">Submit Order</button>
+                </form>
+            </div>
+
+ <footer class="footer">
+        <div class="footer-content">
+          <p class="copyright">
+            Copyright &copy; 2024Oct, krishnareddyDeveloper - All Rights Reserved
+          </p>
+        </div>
+      </footer>
+
+
+
+
+            <div id="reports" class="tab-content hidden">
+                <h2>Reports</h2>
+                <label for="report-type">Select Report Type:</label>
+                <select id="report-type">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+                <input type="date" id="report-date" required>
+                <button onclick="generateReport()">Generate Report</button>
+                <div id="report-output"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
